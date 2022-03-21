@@ -2,7 +2,7 @@
 This repository for cpp environment in browser!
 ___
 ## install
-`bash -c "$(curl https://saffiullahfahim.me/cp-in-browser/install)"`
+<pre>bash -c "$(curl https://saffiullahfahim.me/cp-in-browser/install)"</pre>
 
 ## start
 `cp-start`
