@@ -1,26 +1,26 @@
 clear
 apt update & apt upgrade
-clear
+#clear
 pkg install git
-clear
+#clear
 pkg install clang
-clear
+#clear
 pkg install php-apache
-clear
+#clear
 cd ~
-clear
+# clear
 git clone https://github.com/saffiullahfahim/cp-in-browser.git .cp
-clear
-cd .cp
-clear
+#clear
+cd .cp/docs
+#clear
 rm /data/data/com.termux/files/usr/etc/apache2/httpd.conf
-clear
+#clear
 mv httpd.conf /data/data/com.termux/files/usr/etc/apache2/httpd.conf
-clear
+#clear
 mv stdc++.h /data/data/com.termux/files/usr/include/bits
-clear
+#clear
 rm /data/data/com.termux/files/usr/etc/bash.bashrc
-clear
+#clear
 mv bash.bashrc /data/data/com.termux/files/usr/etc/bash.bashrc
 clear
 echo "You can successfully install!"
