@@ -1,0 +1,29 @@
+clear
+apt update & apt upgrade
+clear
+pkg install git
+clear
+pkg install clang
+clear
+pkg install php-apache
+clear
+cd ~
+clear
+git clone https://github.com/saffiullahfahim/cp-in-browser.git .cp
+clear
+cd .cp
+clear
+rm /data/data/com.termux/files/usr/etc/apache2/httpd.conf
+clear
+mv httpd.conf /data/data/com.termux/files/usr/etc/apache2/httpd.conf
+clear
+mv stdc++.h /data/data/com.termux/files/usr/include/bits
+clear
+rm /data/data/com.termux/files/usr/etc/bash.bashrc
+clear
+mv bash.bashrc /data/data/com.termux/files/usr/etc/bash.bashrc
+clear
+echo "You can successfully install!"
+echo  "Now, you can start! Type 'cp-start' for start and 'cp-stop' for stop!"
+echo "When you do start then go to your browser and open new tab with 'localhost:9999'!"
+echo "Boom......"
