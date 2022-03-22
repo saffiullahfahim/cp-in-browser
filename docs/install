@@ -22,6 +22,7 @@ mv stdc++.h /data/data/com.termux/files/usr/include/bits
 rm /data/data/com.termux/files/usr/etc/bash.bashrc
 #clear
 mv bash.bashrc /data/data/com.termux/files/usr/etc/bash.bashrc
+termux-setup-storage
 clear
 echo "You can successfully install!"
 echo  "Now, you can start! Type 'cp-start' for start and 'cp-stop' for stop!"
