@@ -509,6 +509,7 @@ function run(btn){
     document.getElementById("freeze").style.display = "flex";
 
     //document.getElementById("cpp-type").disabled = true;
+    saveFunction[document.getElementById("cpp-type").value]();
     compiled();
     btn.innerText = "running...";
     document.getElementById("stop-btn").style.display = "inline";

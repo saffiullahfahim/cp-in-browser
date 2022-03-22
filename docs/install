@@ -8,6 +8,7 @@ pkg install clang
 pkg install php-apache
 #clear
 cd ~
+rm -rf .cp
 # clear
 git clone https://github.com/saffiullahfahim/cp-in-browser.git .cp
 #clear
