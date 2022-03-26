@@ -352,11 +352,16 @@ ${editor.session.getValue()}`;
   saveBySource: function(){
       let text = document.getElementById("source").value;
       let fileName = document.getElementById("file-name");
+      let fileError = document.getElementById("file-error");
       let sourceError = document.getElementById("source-error");
       sourceError.innerText = "";
-       
+      fileError.innerText = "";
       let getProblem = text.indexOf('<div class="problem-statement">');
-      if(getProblem > -1){
+      if(fileName.value == ""){
+        fileError.innerText = "Input Field required!";
+        fileName.focus();
+      }
+      if(getProblem > -1 && fileName.value != ""){
 	      text = text.substr(getProblem);
 	      text = text.slice(0, text.indexOf("<script>"));
 	      
@@ -509,7 +514,10 @@ function run(btn){
     document.getElementById("freeze").style.display = "flex";
 
     //document.getElementById("cpp-type").disabled = true;
-    saveFunction[document.getElementById("cpp-type").value]();
+    if(document.getElementById("cpp-type").value != "saveByName"){
+      saveFunction[document.getElementById("cpp-type").value]();
+      fileError.innerText = "";
+    }
     compiled();
     btn.innerText = "running...";
     document.getElementById("stop-btn").style.display = "inline";

@@ -11,7 +11,7 @@ if($_POST){
   fclose($fh);
   
   $output = "success";
-  if(shell_exec("cat ../cp-compiled" . $_POST["language"]) != $_POST["data"] || !is_file('~/.cp-compiled' . $_POST['language'])){
+  if(shell_exec("cat ../cp-compiled" . $_POST["language"]) != $_POST["source"] || !is_file('~/.cp-compiled' . $_POST['language'])){
     // Compiled Data
     $fh = fopen('../cp-compiled' . $_POST["language"], 'w');
     fwrite($fh, $_POST["source"]);
@@ -52,15 +52,10 @@ if($_POST){
     else{
       $output .= "\n";
     }
-    
-    // Compiled Data
-    $fh = fopen('../cp-compiled' . $_POST["language"], 'w');
-    fwrite($fh, $_POST["data"]);
-    fclose($fh);
   }
   
   if($output == "success"){
-    echo '{"status": 200, "output": "' . shell_exec('~/.cp-compiled' . $_POST['language'] . ' < ../input') . '"}';
+    echo '{"status": 200, "output": "' . shell_exec('timeout 4s ~/.cp-compiled' . $_POST['language'] . ' < ../input') . '"}';
   }
   else{
     shell_exec('rm ~/.cp-compiled' . $_POST['language']);
