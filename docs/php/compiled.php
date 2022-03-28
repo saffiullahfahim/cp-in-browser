@@ -11,11 +11,7 @@ if($_POST){
   fclose($fh);
   
   $output = "success";
-  if(shell_exec("cat ../cp-compiled" . $_POST["language"]) != $_POST["source"] || !is_file('~/.cp-compiled' . $_POST['language'])){
-    // Compiled Data
-    $fh = fopen('../cp-compiled' . $_POST["language"], 'w');
-    fwrite($fh, $_POST["source"]);
-    fclose($fh);
+  if(shell_exec("cat ../cp-compiled" . $_POST["language"]) != $_POST["source"]){
     
     $lan = "g++";
     if($_POST["language"] == ".c") {
@@ -48,6 +44,10 @@ if($_POST){
   
     if($output == ''){
       $output = 'success';
+      // Compiled Data
+      $fh = fopen('../cp-compiled' . $_POST["language"], 'w');
+      fwrite($fh, $_POST["source"]);
+      fclose($fh);
     }
     else{
       $output .= "\n";
@@ -58,7 +58,7 @@ if($_POST){
     echo '{"status": 200, "output": "' . shell_exec('timeout 4s ~/.cp-compiled' . $_POST['language'] . ' < ../input') . '"}';
   }
   else{
-    shell_exec('rm ~/.cp-compiled' . $_POST['language']);
+    //shell_exec('rm ~/.cp-compiled' . $_POST['language']);
     echo '{ "status": 401, "output": "' . str_replace($file, str_replace("/sdcard/cp-in-browser/", "", $_POST["path"]), $output) . '", "pwd": "'. shell_exec("pwd") .'"}';
   }
 }

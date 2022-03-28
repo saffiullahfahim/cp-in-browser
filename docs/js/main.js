@@ -321,18 +321,23 @@ ${editor.session.getValue()}`;
           document.getElementById("problem-div").style.display = "flex";
           document.getElementById("problem-code").innerText = fileName.value;
           document.getElementById("problem").innerHTML = text;
+          let pre = document.getElementById("problem").querySelectorAll(".sample-test pre");
+          for(let i = 0; i < pre.length; i++){
+            pre[i].ondblclick = function(){
+              let el = document.createElement('textarea');
+              el.value = pre[i].innerText;
+              document.body.appendChild(el);
+              el.select();
+              document.execCommand('copy');
+              document.body.removeChild(el);
+              alert("Copied");
+            }
+          }
           //MathJax
-          MathJax = {
-	          options: {enableMenu: false,},
-	          tex: {inlineMath: [['$$$','$$$']], displayMath: [['$$$$$$','$$$$$$']]},
-	          svg: {fontCache: 'global'}
-          };
-          let js = document.createElement('script')
-          js.src = "./js/tex-svg-full.js"
-          document.getElementById("problem").appendChild(js)
+          MathJax.typeset();
           fileName.disabled = false;
           document.getElementById("cpp-type").value = "saveByName";
-          document.getElementById("run-btn").style.display = 'inline';
+          //document.getElementById("run-btn").style.display = 'inline';
           setTimeout(function (){document.getElementById("freeze").style.display = 'none';}, 350);
           
         }
@@ -368,18 +373,23 @@ ${editor.session.getValue()}`;
 	      document.getElementById("problem-div").style.display = "flex";
 	      document.getElementById("problem-code").innerText = fileName.value;
 	      document.getElementById("problem").innerHTML = text;
-	      //MathJax
-	      MathJax = {
-	      options: {enableMenu: false,},
-	      tex: {inlineMath: [['$$$','$$$']], displayMath: [['$$$$$$','$$$$$$']]},
-	      svg: {fontCache: 'global'}
-	      };
-	      let js = document.createElement('script')
-	      js.src = "./js/tex-svg-full.js"
-	      document.getElementById("problem").appendChild(js)
+	      let pre = document.getElementById("problem").querySelectorAll(".sample-test pre");
+          for(let i = 0; i < pre.length; i++){
+            pre[i].ondblclick = function(){
+              let el = document.createElement('textarea');
+              el.value = pre[i].innerText;
+              document.body.appendChild(el);
+              el.select();
+              document.execCommand('copy');
+              document.body.removeChild(el);
+              alert("Copied");
+            }
+          }
+        //MathJax
+        MathJax.typeset();
 	      fileName.disabled = false;
 	      document.getElementById("cpp-type").value = "saveByName";
-	      document.getElementById("run-btn").style.display = 'inline';
+	      //document.getElementById("run-btn").style.display = 'inline';
 	      setTimeout(function (){document.getElementById("freeze").style.display = 'none';}, 350);
       }
       else{
@@ -411,6 +421,7 @@ function saveFile(e){
 }
 
 function generate(){
+  document.getElementById("file-name").value = "CF-SOURCE";
 	saveFunction[document.getElementById("cpp-type").value]();
 }
 
@@ -418,7 +429,7 @@ function clearElementAll(){
   document.getElementById("file-name").value = "";
   document.getElementById("file-error").innerText = "";
   document.getElementById("discrebtion").value = "";
-  document.getElementById("source").value = "";
+  document.getElementById("problem").innerHTML = "";
   input.session.setValue('');
   output.session.setValue('');
   editor.session.setValue(document.getElementById("templete").value);

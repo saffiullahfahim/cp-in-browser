@@ -349,7 +349,7 @@ h1{
 
 #editor-container, #output-container, #input-container {
 	width: calc(100% - 33px);
-	height: 500px;
+	height: 70vh;
 	outline: none;
 	resize: none;
 	margin-left: 10px;
