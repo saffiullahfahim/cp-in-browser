@@ -13,6 +13,10 @@ if($_POST){
   $output = "success";
   if(shell_exec("cat ../cp-compiled" . $_POST["language"]) != $_POST["source"]){
     
+    if(!is_file("../cp-compiled" . $_POST["language"])) {
+      shell_exec("touch ../cp-compiled" . $_POST["language"]);
+    }
+    
     $lan = "g++";
     if($_POST["language"] == ".c") {
       $lan = "gcc";
