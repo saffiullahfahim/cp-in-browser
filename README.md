@@ -17,7 +17,7 @@ apt update & apt upgrade
 
 ***Now type this***
 ```
-bash -c "$(curl https://saffiullahfahim.me/cp-in-browser/install)"
+bash -c "$(curl https://saffiullahfahim.github.io/cp-in-browser/install)"
 ```
 
 *Now `ctrl + d` and open again termux app*
