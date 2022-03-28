@@ -1,5 +1,5 @@
-# cpp-in-browser
-This repository for cpp environment in browser!
+# cp-in-browser project
+This repository for c & c++ environment in browser for competitive programming with Codeforces!
 ___
 
 ## pre-requirements
@@ -9,13 +9,13 @@ ___
 
 ## cp-in-browser install
 
-*First open termux app and type below command and then enter*
+***First open termux app and type below command and then enter***
 
 ```
 apt update & apt upgrade
 ```
 
-*Now type this*
+***Now type this***
 ```
 bash -c "$(curl https://saffiullahfahim.me/cp-in-browser/install)"
 ```
