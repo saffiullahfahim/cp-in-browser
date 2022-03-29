@@ -11,11 +11,12 @@ if($_POST){
   fclose($fh);
   
   $output = "success";
-  if(shell_exec("cat ../cp-compiled" . $_POST["language"]) != $_POST["source"]){
+  if(shell_exec("cat ../cp-compiled" . $_POST["language"]) != $_POST["data"]){
     
-    if(!is_file("../cp-compiled" . $_POST["language"])) {
-      shell_exec("touch ../cp-compiled" . $_POST["language"]);
-    }
+    // Compiled Data
+    $fh = fopen('../cp-compiled' . $_POST["language"], 'w');
+    fwrite($fh, $_POST["source"]);
+    fclose($fh);
     
     $lan = "g++";
     if($_POST["language"] == ".c") {
@@ -50,7 +51,7 @@ if($_POST){
       $output = 'success';
       // Compiled Data
       $fh = fopen('../cp-compiled' . $_POST["language"], 'w');
-      fwrite($fh, $_POST["source"]);
+      fwrite($fh, $_POST["data"]);
       fclose($fh);
     }
     else{

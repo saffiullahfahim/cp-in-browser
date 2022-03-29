@@ -244,6 +244,8 @@ const saveFunction = {
   saveByName: function(){
     let fileName = document.getElementById("file-name");
     let fileError = document.getElementById("file-error");
+    document.getElementById("run-btn"). style.display = 'inline';
+    
     let path = "/sdcard/cp-in-browser/" + getFileNameWithExtention(fileName.value).fileFullName;
     fetch("./php/content.php?path=" + path).then(res => res.text())
     .then(text => {
@@ -280,6 +282,7 @@ ${editor.session.getValue()}`;
          setTimeout(function (){document.getElementById("freeze").style.display = "none";}, 350);
          fileName.disabled = false;
          fileError.innerText = "File already exist!";
+         fileName.value = getFileNameWithExtention(fileName.value).fileFullName;
        }
     }).catch(err => console.log(err))
   },
@@ -485,6 +488,17 @@ ${editor.session.getValue()}`;
     
     document.getElementById("stop-btn").onclick = () => {
       controller.abort();
+      let form = new FormData();
+      form.append("data", "");
+      form.append("path", document.getElementById("active").getAttribute("path"));
+      fetch("./php/content.php",{
+        method: "POST",
+        mode: "no-cors",
+        body: form,
+        header: {
+          "Content-Type": "application/json"
+        }
+      }).then(res => res.text())
       document.getElementById("stop-btn").style.display = "none";
       document.getElementById("run-btn").innerText = "Run";
       document.getElementById("freeze").style.display = "none";
